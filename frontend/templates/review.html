@@ -1,50 +1,25 @@
 {% extends "base.html" %} {% block content %}
 <div class="row">
-    <div class="col-sm-12">
-        <h3>Store Health</h3>
-        <p>
-            Check out what people are saying about a specific store and how you
-            could improve the customer experience.
-        </p>
-    </div>
+    <div class="col-sm-12"></div>
+</div>
 
-    <div class="col-md-4">
-        <form method="POST">
-            <div class="form-group">
-                <label for="zipcode">Zip Code</label>
-                <input
-                    type="number"
-                    class="form-control"
-                    id="zipcode"
-                    name="zipcode"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter zipcode."
-                />
-            </div>
-            <div class="form-group">
-                <label for="radius">Radius</label>
-                <input
-                    type="number"
-                    class="form-control"
-                    id="radius"
-                    name="radius"
-                    placeholder="Radius"
-                />
-            </div>
-            <div class="form-group form-check">
-                <input
-                    type="checkbox"
-                    class="form-check-input"
-                    id="exampleCheck1"
-                />
-                <label class="form-check-label" for="exampleCheck1"
-                    >Check me out</label
-                >
-            </div>
-            <button type="submit" class="btn btn-primary">
-                Submit
-            </button>
-        </form>
+<div class="row">
+    <div class="col-md-12">
+        <h2>{{ store }}</h2>
+        <p>
+            Check out what people are saying about this store and how you could
+            improve the customer experience.
+        </p>
+        <h4>Rating: {{ totalRating }}</h4>
+        <h4>Sentiment Rating: {{ totalSentiment }}</h4>
+        <h4>Key Phrases:</h4>
+        <h5>Positive</h5>
+        <p>{{ keyPhrases["positive"] }}</p>
+        <h5>Negative</h5>
+        <p>{{ keyPhrases["negative"] }}</p>
+        <h4></h4>
+        <div class="result"></div>
     </div>
 </div>
+
 {% endblock %}

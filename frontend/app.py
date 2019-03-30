@@ -1,8 +1,6 @@
 
 from flask import Flask, render_template, request, jsonify
-# from flask_wtf import FlaskForm
-# from wtforms import IntegerField, validators, StringField
-# from wtforms_components import TimeField
+from model import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisisasupersecretkey!'
@@ -32,6 +30,9 @@ def index():
 @app.route('/find-review', methods=['GET', 'POST'])
 def findReview():
     if request.method == 'POST':
+        zipcode = request.form['zipcode']
+        # get results from the model
+
         result1 = {}
         result2 = {}
         result3 = {}
@@ -63,6 +64,8 @@ def findCustomer():
 
 @app.route('/review', methods=['GET'])
 def review():
+
+    db = StoreDB()
 
     store = 'atlanta-20'
     totalRating = 4.3

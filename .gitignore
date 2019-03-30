@@ -8,3 +8,5 @@ __pycache__/
 *.pyo
 /datascraper/datascraper.iml
 .idea
+*.out
+.ipynb_checkpoints/

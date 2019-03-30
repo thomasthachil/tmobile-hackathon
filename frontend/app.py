@@ -1,8 +1,6 @@
 
 from flask import Flask, render_template, request, jsonify
-# from flask_wtf import FlaskForm
-# from wtforms import IntegerField, validators, StringField
-# from wtforms_components import TimeField
+from model import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisisasupersecretkey!'
@@ -33,21 +31,41 @@ def index():
 def findReview():
     if request.method == 'POST':
         zipcode = request.form['zipcode']
-        radius = request.form['radius']
+        # get results from the model
+
+        result1 = {}
+        result2 = {}
+        result3 = {}
+        result1['store'] = 'atlanta-20'
+        result1['totalRating'] = 4.3
+        result1['totalSentiment'] = 0.556
+        result2['store'] = 'atlanta-20'
+        result2['totalRating'] = 1.3
+        result2['totalSentiment'] = 0.156
+        result3['store'] = 'atlanta-20'
+        result3['totalRating'] = 2.3
+        result3['totalSentiment'] = 0.356
+        results = [result1, result2, result3]
+        return render_template('findReview.html', results=results)
+
     return render_template('findReview.html')
 
 
 @app.route('/find-customer', methods=['GET', 'POST'])
 def findCustomer():
     if request.method == 'POST':
-        zipcode = request.form['zipcode']
-        radius = request.form['radius']
+        name = request.form['associate']
+        timeTil = request.form['time']
+        print name
+        print timeTil
 
-    return render_template('findCustomer.html')
+    return render_template('customer.html', results=True)
 
 
 @app.route('/review', methods=['GET'])
 def review():
+
+    db = StoreDB()
 
     store = 'atlanta-20'
     totalRating = 4.3

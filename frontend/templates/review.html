@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block content %}
+<div class="row">
+    <div class="col-sm-12"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>{{ store }}</h2>
+        <p>
+            Check out what people are saying about this store and how you could
+            improve the customer experience.
+        </p>
+        <h4>Rating: {{ totalRating }}</h4>
+        <h4>Sentiment Rating: {{ totalSentiment }}</h4>
+        <h4>Key Phrases:</h4>
+        <h5>Positive</h5>
+        <p>{{ keyPhrases["positive"] }}</p>
+        <h5>Negative</h5>
+        <p>{{ keyPhrases["negative"] }}</p>
+        <h4></h4>
+        <div class="result"></div>
+    </div>
+</div>
+
+{% endblock %}

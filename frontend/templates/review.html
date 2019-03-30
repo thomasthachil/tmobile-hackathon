@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../static/gauge.min.js"></script>
+
+</head>
+<body style="background-image: url(../static/assets/img/bg/picture-1.jpg);">
+<script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+<div class="container">
+    <div class="row">
+        <h1>Check on Your Store</h1>
+    </div>
+    <select id=storeSel>
+        <option value="t-mobile-atlanta-13">T-Mobile Atlanta 13</option>
+        <option value="t-mobile-atlanta-3">T-Mobile Atlanta 3</option>
+        <option value="t-mobile-atlanta-39">T-Mobile Atlanta 39</option>
+        <option value="t-mobile-austell">T-Mobile Austell</option>
+        <option value="t-mobile-lilburn-2">T-Mobile Lilburn 2</option>
+        <option value="t-mobile-atlanta-30">T-Mobile Atlanta 30</option>
+        <option value="t-mobile-atlanta-23">T-Mobile Atlanta 23</option>
+        <option value="t-mobile-atlanta-46">T-Mobile Atlanta 46</option>
+        <option value="t-mobile-lithia-springs">T-Mobile Lithia Springs</option>
+        <option value="t-mobile-atlanta-7">T-Mobile Atlanta 7</option>
+        <option value="t-mobile-east-point">T-Mobile East Point</option>
+        <option value="t-mobile-atlanta-35">T-Mobile Atlanta 35</option>
+        <option value="t-mobile-atlanta-28">T-Mobile Atlanta 28</option>
+        <option value="t-mobile-alpharetta-7">T-Mobile Alpharetta 7</option>
+        <option value="t-mobile-atlanta-43">T-Mobile Atlanta 43</option>
+      </select>
+      <button id=search>Search</button>
+      <script type=text/javascript>
+            $(function() {
+                $('button#search').bind('click', function() {
+                $.getJSON($SCRIPT_ROOT + '/_storeRating', {
+                    store: $('#storeSel').val()
+                }, function(data) {
+                    console.log(data.rating);
+                    $("#storeRat").text("Your Average Rating: " + data.rating);
+                });
+                return false;
+                });
+            });
+      </script>
+      <br>
+      <h2 id=storeRat>Your Average Rating: </h2>
+      <canvas id=gauge></canvas>
+    <br>
+    </div>
+</div>
+
+</body>
+</html>

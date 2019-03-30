@@ -4,7 +4,7 @@ from model import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisisasupersecretkey!'
-
+db = StoreDB()
 
 # TODO: Have each method be self contained, calling only the other methods it needs.
 
@@ -34,20 +34,21 @@ def findReview():
         # get results from the model
 
         # find all stores that have this sizpcode
-
-        result1 = {}
-        result2 = {}
-        result3 = {}
-        result1['store'] = 'atlanta-20'
-        result1['totalRating'] = 4.3
-        result1['totalSentiment'] = 0.556
-        result2['store'] = 'atlanta-20'
-        result2['totalRating'] = 1.3
-        result2['totalSentiment'] = 0.156
-        result3['store'] = 'atlanta-30'
-        result3['totalRating'] = 2.3
-        result3['totalSentiment'] = 0.356
-        results = [result1, result2, result3]
+        results = db.zipcode_lookup(zipcode)
+        print results
+        # result1 = {}
+        # result2 = {}
+        # result3 = {}
+        # result1['store'] = 'atlanta-20'
+        # result1['totalRating'] = 4.3
+        # result1['totalSentiment'] = 0.556
+        # result2['store'] = 'atlanta-20'
+        # result2['totalRating'] = 1.3
+        # result2['totalSentiment'] = 0.156
+        # result3['store'] = 'atlanta-30'
+        # result3['totalRating'] = 2.3
+        # result3['totalSentiment'] = 0.356
+        # results = [result1, result2, result3]
         return render_template('findReview.html', results=results)
 
     return render_template('findReview.html')
@@ -66,10 +67,6 @@ def findCustomer():
 
 @app.route('/review/<store>', methods=['GET'])
 def review(store):
-
-    # if request.method == ['GET']:
-    #     request.store
-    # db = StoreDB()
 
     store = 'atlanta-20'
     totalRating = 4.3

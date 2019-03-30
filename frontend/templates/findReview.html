@@ -22,16 +22,7 @@
                     placeholder="Enter zipcode."
                 />
             </div>
-            <div class="form-group form-check">
-                <input
-                    type="checkbox"
-                    class="form-check-input"
-                    id="exampleCheck1"
-                />
-                <label class="form-check-label" for="exampleCheck1"
-                    >Check me out</label
-                >
-            </div>
+
             <button type="submit" class="btn btn-primary">
                 Submit
             </button>
@@ -46,9 +37,9 @@
         <div class="results">
             {% for result in results %}
             <div class="result">
-                <h5>{{ result.store }}</h5>
-                <p>Rating: {{ result.totalRating }}</p>
-                <p>Sentiment Rating: {{ result.totalSentiment }}</p>
+                <h5>{{ result["name"] }}</h5>
+                <p>Rating: {{ result["rating"] }}</p>
+                <p>Sentiment Rating: {{ result["sent"] }}</p>
                 <a href="{{ url_for('review' ,store=result.store) }}"
                     >More Details</a
                 >

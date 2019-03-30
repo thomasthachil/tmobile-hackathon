@@ -67,21 +67,29 @@ def findCustomer():
 
 @app.route('/review/<store>', methods=['GET'])
 def review(store):
-
-    store = 'atlanta-20'
     totalRating = 4.3
     totalSentiment = 0.556
     keyPhrases = {}
-    keyPhrases['positive'] = ['excellent service',
-                              'friendly people', 'wide selection']
-    keyPhrases['negative'] = ['bad attitude', 'scam artist', 'unprofessional']
+    pos = []
+    neg = []
+    for doc in db.key_phrases_pos(store):
+        pos += doc['keyPhrases']
+    for doc in db.key_phrases_neg(store):
+        neg += doc['keyPhrases']
+    keyPhrases['positive'] = [str(r) for r in pos]
+    keyPhrases['negative'] = [str(r) for r in neg]
+    raw_revs = db.get_raw_reviews(store)
     reviews = {}
     positive = []
-    positive.append([3.3, 0.25, ['blah', 'blah2', 'blah3']])
-    positive.append([2.3, 0.23, ['blah', 'blah2', 'blah3']])
-    positive.append([1.3, 0.15, ['blah', 'blah2', 'blah3']])
-    reviews['positive'] = positive
+    negative = []
+    print(len(raw_revs[0]))
+    for i in range(len(raw_revs)):
+        print(raw_revs[8][1])
+        positive.append([raw_revs[i][1], db.get_indexed_sent(store, i), db.get_indexed_pos_keyPhrases(store,i), raw_revs[i][0], raw_revs[i][2]])
+        negative.append([raw_revs[i][1], db.get_indexed_sent(store, i), db.get_indexed_neg_keyPhrases(store,i), raw_revs[i][0], raw_revs[i][2]])
 
+    reviews['positive'] = positive
+    reviews['negative'] = negative
     return render_template('review.html', store=store, totalRating=totalRating, totalSentiment=totalSentiment, keyPhrases=keyPhrases, reviews=reviews)
 
 

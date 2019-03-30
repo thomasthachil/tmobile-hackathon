@@ -128,9 +128,12 @@ class StoreDB:
         
         return sentiments4word
 
+    def get_zipcode(self, store):
+        return self.df.loc[store]['location']['zip_code']
+
 
 
 
 if __name__ == "__main__":
     DB = StoreDB()
-    print(DB.keyword_search('t-mobile-atlanta-13', 'store'))
+    print(DB.get_zipcode('t-mobile-atlanta-13'))

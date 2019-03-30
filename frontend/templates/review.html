@@ -7,8 +7,7 @@
             could improve the customer experience.
         </p>
     </div>
-</div>
-<div class="row">
+
     <div class="col-md-4">
         <form method="POST">
             <div class="form-group">
@@ -48,20 +47,4 @@
         </form>
     </div>
 </div>
-
-{% if results %}
-<div class="row">
-    <div class="col-md-6">
-        <h3>Results</h3>
-        <div class="results">
-            {% for result in results %}
-            <div class="result">
-                <h4>{{ result.store }}</h4>
-                <p>Rating: {{ result.totalRating }}</p>
-                <p>Sentiment Rating: {{ result.totalSentiment }}</p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
-{% endif %} {% endblock %}
+{% endblock %}

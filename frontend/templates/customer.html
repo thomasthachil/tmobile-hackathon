@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block head %}
+<script src="../static/location.js"></script>
+<!-- Add references to the Azure Maps Map control JavaScript and CSS files. -->
+<link
+    rel="stylesheet"
+    href="https://atlas.microsoft.com/sdk/css/atlas.min.css?api-version=2"
+    type="text/css"
+/>
+<script src="https://atlas.microsoft.com/sdk/js/atlas.min.js?api-version=2"></script>
+
+<!-- Add a reference to the Azure Maps Services Module JavaScript file. -->
+<script src="https://atlas.microsoft.com/sdk/js/atlas-service.js?api-version=2"></script>
+{% endblock %} {% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Customer Appointment</h3>
+        <p>
+            Check how far away your customers are. Use that time to prioritize
+            our excellent customer service.
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form>
+            <div class="form-group">
+                <label for="associate">Associate Name</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="associate"
+                    name="associate"
+                    placeholder="Your name."
+                />
+            </div>
+            <div class="form-group">
+                <label for="time">Time till Next Appointment</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="time"
+                    name="time"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter time."
+                />
+            </div>
+        </form>
+        <button onClick="GetMap()" class="btn btn-primary">
+            Find Customer
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div id="results"></div>
+    </div>
+    <div class="col-md-6">
+        <div id="resultsText"></div>
+    </div>
+</div>
+{% endblock %}

@@ -3,10 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
-<body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<h1>Hello World!</h1>
+</head>
+<body style="background-color: #ea0a8e">
+
+<div class="container">
+    <div class="row">
+        <h1>T-Mobile Associate Dashboard</h1>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-md-4" id="reviews">
+            <div class="row">
+                <h4>Check out how your store is doing:</h4>
+            </div>
+            <br>
+            <form>
+                <div class="form-group">
+                    <label for="zip">Zip Code</label>
+                    <input type="text" class="form-control" id="zip" aria-describedby="zipcode" placeholder="Enter Zip Code">
+                </div>
+                <div class="form-group">
+                    <label for="radius">Radius</label>
+                    <input type="number" class="form-control" id="radius" placeholder="Enter a Radius Here">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="detail">
+                    <label class="form-check-label" for="detail">Detailed Report</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+        <div class="col-md-3" id="buffer">
+            <h1>    </h1>
+        </div>
+        <div class="col-md-4" id="tracker">
+            <h4>Scheduled a meeting? See how far away your customer is!</h4>
+            <br>
+            <form>
+                <div class="form-group">
+                    <label for="name">Customer Name</label>
+                    <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Enter Customer Name Here">
+                </div>
+                <div class="form-group">
+                    <label for="time">Meeting Time</label>
+                    <input type="number" class="form-control" id="time" placeholder="Enter Meeting Time Here">
+                </div>
+                <button type="submit" class="btn btn-primary">Find Them!</button>
+            </form>
+
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

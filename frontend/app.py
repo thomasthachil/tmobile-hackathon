@@ -65,7 +65,9 @@ def findCustomer():
 @app.route('/review', methods=['GET'])
 def review():
 
-    db = StoreDB()
+    # if request.method == ['GET']:
+    #     request.store
+    # db = StoreDB()
 
     store = 'atlanta-20'
     totalRating = 4.3
@@ -75,11 +77,11 @@ def review():
                               'friendly people', 'wide selection']
     keyPhrases['negative'] = ['bad attitude', 'scam artist', 'unprofessional']
     reviews = {}
-    positive = {}
-    positive['atlanta-20'] = [3.3, 0.25, ['blah', 'blah2', 'blah3']]
-    positive['atlanta-30'] = [2.3, 0.23, ['blah', 'blah2', 'blah3']]
-    positive['atlanta-40'] = [1.3, 0.15, ['blah', 'blah2', 'blah3']]
-    reviews['positive'] = {}
+    positive = []
+    positive.append([3.3, 0.25, ['blah', 'blah2', 'blah3']])
+    positive.append([2.3, 0.23, ['blah', 'blah2', 'blah3']])
+    positive.append([1.3, 0.15, ['blah', 'blah2', 'blah3']])
+    reviews['positive'] = positive
 
     return render_template('review.html', store=store, totalRating=totalRating, totalSentiment=totalSentiment, keyPhrases=keyPhrases, reviews=reviews)
 
@@ -102,5 +104,3 @@ def storeRating():
         ratings.append(rev[1])
         # idnum += 1
     return jsonify(rating=(sum(ratings) / float(len(ratings))))
-
-if 

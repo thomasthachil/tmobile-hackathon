@@ -17,7 +17,18 @@
         <p>{{ keyPhrases["positive"] }}</p>
         <h5>Negative</h5>
         <p>{{ keyPhrases["negative"] }}</p>
-        <h4></h4>
+        <h4>Reviews</h4>
+        <h5>Positive</h5>
+        {% for review in reviews["positive"] %}
+        <p>Rating: {{ review[0] }}</p>
+        <p>Sentiment: {{ review[1] }}</p>
+        <p>Positive: {{ review[2] }}</p>
+        <p>Negative: {{ review[2] }}</p>
+        <p>Full Review: {{ review[2] }}</p>
+        <br />
+        {% endfor %}
+
+        <h5>Negative</h5>
         <div class="result"></div>
     </div>
 </div>

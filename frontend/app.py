@@ -39,14 +39,31 @@ def findReview():
 
 @app.route('/find-customer', methods=['GET', 'POST'])
 def findCustomer():
-    # meeting = MeetingForm()
+    if request.method == 'POST':
+        zipcode = request.form['zipcode']
+        radius = request.form['radius']
 
     return render_template('findCustomer.html')
 
 
-@app.route('/review')
+@app.route('/review', methods=['GET'])
 def review():
-    return render_template('review.html')
+
+    store = 'atlanta-20'
+    totalRating = 4.3
+    totalSentiment = 0.556
+    keyPhrases = {}
+    keyPhrases['positive'] = ['excellent service',
+                              'friendly people', 'wide selection']
+    keyPhrases['negative'] = ['bad attitude', 'scam artist', 'unprofessional']
+    reviews = {}
+    positive = {}
+    positive['atlanta-20'] = [3.3, 0.25, ['blah', 'blah2', 'blah3']]
+    positive['atlanta-30'] = [2.3, 0.23, ['blah', 'blah2', 'blah3']]
+    positive['atlanta-40'] = [1.3, 0.15, ['blah', 'blah2', 'blah3']]
+    reviews['positive'] = {}
+
+    return render_template('review.html', store=store, totalRating=totalRating, totalSentiment=totalSentiment, keyPhrases=keyPhrases, reviews=reviews)
 
 
 @app.route('/_storeRating')

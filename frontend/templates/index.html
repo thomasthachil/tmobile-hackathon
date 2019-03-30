@@ -1,51 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
-        />
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"
-        ></script>
-
-        <link rel="stylesheet" href="../static/main.css" />
-        <title>T-Mobile</title>
-    </head>
-    <body>
-        <div class="container-fluid">
-            <div class="row" id="top-bar">
-                <div class="col-md-12">
-                    <h1>T-Mobile Associate Dashboard</h1>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>Check how your store's doing:</h3>
-                    <a
-                        class="btn btn-primary"
-                        href="{{ url_for('findReview') }}"
-                        role="button"
-                        >Reviews</a
-                    >
-                    <h3>Check the status of your appointments:</h3>
-                    <a
-                        class="btn btn-primary"
-                        href="{{ url_for('findCustomer') }}"
-                        role="button"
-                        >Appointments</a
-                    >
-                </div>
-            </div>
-            <br />
-        </div>
-    </body>
-</html>
+{% extends "base.html" %} {% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h3>Check how your store's doing:</h3>
+        <a
+            class="btn btn-primary"
+            href="{{ url_for('findReview') }}"
+            role="button"
+            >Reviews</a
+        >
+        <h3>Check the status of your appointments:</h3>
+        <a
+            class="btn btn-primary"
+            href="{{ url_for('findCustomer') }}"
+            role="button"
+            >Appointments</a
+        >
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" href="../static/main.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>T-Mobile</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <h1>Store Health</h1>
+                <p>
+                    Check out what people are saying about a specific store and
+                    how you could improve the customer experience.
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <form>
+                        <div class="form-group">
+                            <label for="zipcode">Zip Code</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="zipcode"
+                                aria-describedby="emailHelp"
+                                placeholder="Enter zipcode."
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="radius">Radius</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="radius"
+                                placeholder="Radius"
+                            />
+                        </div>
+                        <div class="form-group form-check">
+                            <input
+                                type="checkbox"
+                                class="form-check-input"
+                                id="exampleCheck1"
+                            />
+                            <label class="form-check-label" for="exampleCheck1"
+                                >Check me out</label
+                            >
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

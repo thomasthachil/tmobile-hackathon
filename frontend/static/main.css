@@ -1,0 +1,31 @@
+body {
+    /* font-family: "Tele-GroteskUlt", sans-serif !important; */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    display: block;
+    margin-top: 20px;
+    font-weight: 200;
+}
+
+label {
+    font-weight: 500;
+}
+
+#top-bar {
+    background-color: black;
+    color: white;
+    padding-bottom: 10px;
+}
+
+.btn {
+    background-color: #ea0a8e;
+    border-color: #ea0a8e;
+}

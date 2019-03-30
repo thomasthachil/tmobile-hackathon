@@ -1,0 +1,18 @@
+[I 22:13:05.443 NotebookApp] Serving notebooks from local directory: /Users/jeffreyjacob/Documents/GitHub/tmobile-hackathon
+[I 22:13:05.443 NotebookApp] 0 active kernels
+[I 22:13:05.443 NotebookApp] The Jupyter Notebook is running at:
+[I 22:13:05.443 NotebookApp] http://localhost:8888/?token=6f7c5e0e0f19078237cedb1a48e12fadcc2013ae48fc4794
+[I 22:13:05.443 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 22:13:05.444 NotebookApp] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8888/?token=6f7c5e0e0f19078237cedb1a48e12fadcc2013ae48fc4794
+[I 22:13:05.632 NotebookApp] Accepting one-time-token-authenticated connection from ::1
+[I 22:13:20.006 NotebookApp] interrupted
+Serving notebooks from local directory: /Users/jeffreyjacob/Documents/GitHub/tmobile-hackathon
+0 active kernels
+The Jupyter Notebook is running at:
+http://localhost:8888/?token=6f7c5e0e0f19078237cedb1a48e12fadcc2013ae48fc4794
+Shutdown this notebook server (y/[n])? [C 22:13:20.188 NotebookApp] received signal 2, stopping
+[I 22:13:20.189 NotebookApp] Shutting down 0 kernels

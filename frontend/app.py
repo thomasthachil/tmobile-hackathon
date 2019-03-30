@@ -33,6 +33,8 @@ def findReview():
         zipcode = request.form['zipcode']
         # get results from the model
 
+        # find all stores that have this sizpcode
+
         result1 = {}
         result2 = {}
         result3 = {}
@@ -42,7 +44,7 @@ def findReview():
         result2['store'] = 'atlanta-20'
         result2['totalRating'] = 1.3
         result2['totalSentiment'] = 0.156
-        result3['store'] = 'atlanta-20'
+        result3['store'] = 'atlanta-30'
         result3['totalRating'] = 2.3
         result3['totalSentiment'] = 0.356
         results = [result1, result2, result3]
@@ -62,8 +64,8 @@ def findCustomer():
     return render_template('customer.html', results=True)
 
 
-@app.route('/review', methods=['GET'])
-def review():
+@app.route('/review/<store>', methods=['GET'])
+def review(store):
 
     # if request.method == ['GET']:
     #     request.store

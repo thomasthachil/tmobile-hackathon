@@ -3,24 +3,10 @@ from flask import Flask, render_template, request, jsonify
 # from flask_wtf import FlaskForm
 # from wtforms import IntegerField, validators, StringField
 # from wtforms_components import TimeField
-import json
-import os
-import nltk
-from nltk import FreqDist
-import pandas as pd
-import matplotlib.pyplot as plt
-import re
-import requests
-from pprint import pprint
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisisasupersecretkey!'
-subscription_key = 'c1005ffa18cc42ddbf916d2483bb2dd2'  # os.environ['MS_KEY']
-assert subscription_key
-text_analytics_base_url = "https://westcentralus.api.cognitive.microsoft.com/text/analytics/v2.0/"
-df = pd.read_json('../datascraper/data.json')
+
 
 # TODO: Have each method be self contained, calling only the other methods it needs.
 

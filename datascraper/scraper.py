@@ -161,7 +161,7 @@ def query_api_tmobile():
     response = request(API_HOST, SEARCH_PATH, API_KEY, url_params=url_params)
     list_stores = response.get('businesses')
 
-    data = defaultdict(list)
+    data = []
 
     for store in list_stores:
         url = store['url']
@@ -169,26 +169,32 @@ def query_api_tmobile():
         page = requests.get(url)
         soup = bs4.BeautifulSoup(page.content, 'html.parser')
         reviewList = soup.find("ul", {"class": "ylist ylist-bordered reviews"})
+        store_data = {'id': id, 'name': store['alias'], 'location': store['location'], 'reviews': []}
 
         for review in reviewList.findAll('li'):
             content = review.find('div', {'class': 'review-wrapper'})
             numstars = None
             text = None
+            date = None
             if(content is not None):
                 star_rating = content.find('div', {'class': 'biz-rating biz-rating-large clearfix'})
                 if(star_rating is not None):
                     subdiv = star_rating.find('div').find('div')
+                    date = star_rating.find('span').text
                     stars = subdiv.get('title')
                     numstars = float(stars[0:4])
                 writing = content.find('p')
                 if(writing is not None):
                     text = writing.text
 
-            if(text is not None and numstars is not None):
-               data[id].append([text, numstars])
+            if(text is not None and numstars is not None and date is not None):
+                store_data['reviews'].append([text, numstars, date])
+
+        if(len(store_data['reviews']) != 0):
+            data.append(store_data)
 
     with open('data.json', 'w') as fout:
-        json.dump(dict(data), fout)
+        json.dump(data, fout)
 
 def main():
     try:

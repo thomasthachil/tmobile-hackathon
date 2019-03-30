@@ -22,21 +22,6 @@
                     placeholder="Enter zipcode."
                 />
             </div>
-<<<<<<< HEAD
-
-=======
-            <div class="form-group form-check">
-                <input
-                    type="checkbox"
-                    class="form-check-input"
-                    id="exampleCheck1"
-                />
-                <label class="form-check-label" for="exampleCheck1"
-                    >Check me out</label
-                >
-            </div>
-            <br>
->>>>>>> f21d94d15b04f5447febd9f1bcb2664f656a966a
             <button type="submit" class="btn btn-primary">
                 Submit
             </button>
@@ -54,7 +39,7 @@
                 <h5>{{ result["name"] }}</h5>
                 <p>Rating: {{ result["rating"] }}</p>
                 <p>Sentiment Rating: {{ result["sent"] }}</p>
-                <a href="{{ url_for('review' ,store=result.store) }}"
+                <a href="{{ url_for('review' ,store=result['name']) }}"
                     >More Details</a
                 >
             </div>

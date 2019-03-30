@@ -72,7 +72,7 @@ class StoreDB:
 
             self.df.at[index, 'key_phrases_pos'] = pos_phrases
             self.df.at[index, 'key_phrases_neg'] = neg_phrases
-
+            
 
     def key_phrases_pos(self, store):
         pos_phrases = self.df.loc[store]['key_phrases_pos']
@@ -115,7 +115,7 @@ class StoreDB:
                 return doc['keyPhrases']
 
     def get_agg_sent(self, store):
-        return self.df.loc[store]['aggSent']
+        return self.df.loc[store]['agg_sent']
 
     def keyword_search(self, store, word):
         sentiments4word = []
@@ -130,10 +130,18 @@ class StoreDB:
 
     def get_zipcode(self, store):
         return self.df.loc[store]['location']['zip_code']
+    
+    def zipcode_lookup(self, zipcode):
+        storesAndData = []
+        for index, row in self.df.iterrows():
+            if int(row.location['zip_code']) == int(zipcode):
+                storesAndData.append({'name':index, 'rating':row.stars, 'sent':row.agg_sent, 'zipcode':int(zipcode)})
+        return storesAndData
+
 
 
 
 
 if __name__ == "__main__":
     DB = StoreDB()
-    print(DB.get_zipcode('t-mobile-atlanta-13'))
+    print(DB.zipcode_lookup(30309))

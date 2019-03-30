@@ -20,6 +20,7 @@ class StoreDB:
         self.df = pd.read_json('../datascraper/data.json', dtype=object)
         self.df = self.df.set_index('name')
         self.df['agg_sent'] = 0.0
+        self.df['stars'] = 0.0
         self.df['sentiments'] = None
         self.df['sentiments'] = self.df['sentiments'].astype(object)
         self.df['key_phrases_pos'] = None
@@ -29,9 +30,12 @@ class StoreDB:
         for index, row in self.df.iterrows():
             idnum = 0
             docDic = []
+            fiveRate = []
             for rev in self.df.loc[index]['reviews']:
                 docDic.append({'id':idnum, 'language':'en', 'text': rev[0]})
+                fiveRate.append(float(rev[1]))
                 idnum += 1
+            self.df.at[index, 'stars'] = sum(fiveRate) / float(len(fiveRate))
             documents = {'documents' : docDic}
             headers   = {'Ocp-Apim-Subscription-Key': subscription_key}
             sentiment_api_url = text_analytics_base_url + "sentiment"
@@ -81,10 +85,52 @@ class StoreDB:
     def get_raw_reviews(self, store):
         raw_revs = self.df.loc[store]['reviews']
         return raw_revs
-    
+
+    def get_sentiments(self, store):
+        return self.df.loc[store]['sentiments']
+
+    def get_indexed_sent(self, store, id):
+        sents = self.get_sentiments(store)
+        for doc in sents:
+            if doc['id'] == id:
+                return doc['score']
+
+    def get_avg_stars(self, store):
+        return self.df.loc[store]['stars']
+
+    def get_indexed_review(self, store, id):
+        raw_rev = self.df.loc[store]['reviews'][id][0]
+        return raw_rev
+
+    def get_indexed_pos_keyPhrases(self, store, id):
+        pos_phrase_all = self.key_phrases_pos(store)
+        for doc in pos_phrase_all:
+            if doc['id'] == id:
+                return doc['keyPhrases']
+
+    def get_indexed_neg_keyPhrases(self, store, id):
+        neg_phrase_all = self.key_phrases_neg(store)
+        for doc in neg_phrase_all:
+            if doc['id'] == id:
+                return doc['keyPhrases']
+
     def get_agg_sent(self, store):
         return self.df.loc[store]['aggSent']
 
+    def keyword_search(self, store, word):
+        sentiments4word = []
+        pos_phrases = self.key_phrases_pos(store)
+        neg_phrases = self.key_phrases_neg(store)
+
+        for doc in pos_phrases:
+            if word in doc['keyPhrases']:
+                sentiments4word.append(self.get_indexed_sent(store, doc['id']))
+        
+        return sentiments4word
+
+
+
+
 if __name__ == "__main__":
     DB = StoreDB()
-    DB.key_phrases_neg('t-mobile-atlanta-13')
+    print(DB.keyword_search('t-mobile-atlanta-13', 'store'))

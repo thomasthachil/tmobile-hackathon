@@ -56,8 +56,8 @@ def findCustomer():
     if request.method == 'POST':
         name = request.form['associate']
         timeTil = request.form['time']
-        print name
-        print timeTil
+        print(name)
+        print(timeTil)
 
     return render_template('customer.html', results=True)
 
@@ -102,3 +102,5 @@ def storeRating():
         ratings.append(rev[1])
         # idnum += 1
     return jsonify(rating=(sum(ratings) / float(len(ratings))))
+
+if 

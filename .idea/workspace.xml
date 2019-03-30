@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78885b86-3902-4f22-84ac-7a6dc41741f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datascraper/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/datascraper/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datascraper/Untitled.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/datascraper/Untitled.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datascraper/corpus.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/datascraper/corpus.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datascraper/dictionary.gensim" beforeDir="false" afterPath="$PROJECT_DIR$/datascraper/dictionary.gensim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datascraper/model5.gensim" beforeDir="false" afterPath="$PROJECT_DIR$/datascraper/model5.gensim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datascraper/model5.gensim.expElogbeta.npy" beforeDir="false" afterPath="$PROJECT_DIR$/datascraper/model5.gensim.expElogbeta.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datascraper/model5.gensim.id2word" beforeDir="false" afterPath="$PROJECT_DIR$/datascraper/model5.gensim.id2word" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datascraper/model5.gensim.state" beforeDir="false" afterPath="$PROJECT_DIR$/datascraper/model5.gensim.state" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testStuff/Cleaner.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/testStuff/Cleaner.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +30,7 @@
         <counts>
           <entry key="data" value="2" />
           <entry key="gitignore" value="4" />
+          <entry key="html" value="1" />
           <entry key="ipynb" value="4" />
           <entry key="json" value="1" />
           <entry key="py" value="8" />
@@ -46,6 +39,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="HTML" value="1" />
           <entry key="IPNB" value="4" />
           <entry key="JSON" value="1" />
           <entry key="PLAIN_TEXT" value="6" />
@@ -56,13 +50,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="41" />
-          <entry key="py" value="2486" />
+          <entry key="py" value="2490" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="41" />
-          <entry key="Python" value="2486" />
+          <entry key="Python" value="2490" />
         </counts>
       </usages-collector>
     </session>
@@ -111,7 +105,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/graphics.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="143">
@@ -123,11 +117,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="104">
+              <caret line="59" column="22" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+              <folding>
+                <element signature="e#1#59#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -159,6 +165,7 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/testStuff/Cleaner.ipynb" />
         <option value="$PROJECT_DIR$/frontend/graphics.py" />
+        <option value="$PROJECT_DIR$/frontend/app.py" />
       </list>
     </option>
   </component>
@@ -239,6 +246,12 @@
             <path>
               <item name="tmobile-hackathon" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="tmobile-hackathon" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="frontend" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="templates" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="tmobile-hackathon" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="tmobile-hackathon" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="testStuff" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
@@ -250,7 +263,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553968988213" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553969329741" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="jdk.selected.PYTHON_MODULE" value="Python 3.5 (Volley)" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -375,12 +388,12 @@
       <updated>1553904307850</updated>
       <workItem from="1553904309758" duration="8074000" />
       <workItem from="1553952961477" duration="296000" />
-      <workItem from="1553953295039" duration="3263000" />
+      <workItem from="1553953295039" duration="3583000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11633000" />
+    <option name="totallyTimeSpent" value="11953000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1549" height="846" extended-state="6" />
@@ -477,13 +490,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/datascraper/scraper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3196">
@@ -524,6 +530,23 @@
           <caret line="13" selection-start-line="13" selection-end-line="13" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="59" column="22" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+          <folding>
+            <element signature="e#1#59#0" expanded="true" />
           </folding>
         </state>
       </provider>

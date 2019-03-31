@@ -124,7 +124,7 @@ class ChefJeff:
                                             color=Spectral6, services = [';'.join(v[1]) for k,v in x.items()]))
 
         p = figure(x_range = list(x.keys()), title="Service Sentiment for %s" % (self.id),
-                   toolbar_location=None, tools="hover", tooltips="@sentiment: @services")
+                   toolbar_location=None, tools="hover", tooltips="@sentiment: @services", plot_width = 800)
 
         p.vbar(x='sentiment', top='counts', width=0.9, color='color', source=source)
 

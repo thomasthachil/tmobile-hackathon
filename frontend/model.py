@@ -10,6 +10,8 @@ from pprint import pprint
 import matplotlib.pyplot as plt
 import seaborn as sns
 import time
+from datetime import datetime
+
 
 subscription_key = 'c1005ffa18cc42ddbf916d2483bb2dd2'  # os.environ['MS_KEY']
 assert subscription_key
@@ -32,14 +34,21 @@ class StoreDB:
             self.df['key_phrases_pos'] = self.df['key_phrases_pos'].astype(object)
             self.df['key_phrases_neg'] = None
             self.df['key_phrases_neg'] = self.df['key_phrases_neg'].astype(object)
+            self.df['time'] = None
             for index, row in self.df.iterrows():
                 idnum = 0
                 docDic = []
                 fiveRate = []
+                times = []
                 for rev in self.df.loc[index]['reviews']:
                     docDic.append({'id':idnum, 'language':'en', 'text': rev[0]})
                     fiveRate.append(float(rev[1]))
+                    try:
+                        times.append([rev[1], datetime.strptime(rev[2].rstrip().lstrip(), "%m/%d/%Y")])
+                    except:
+                        pass
                     idnum += 1
+                self.df.at[index, 'time'] = times
                 self.df.at[index, 'stars'] = sum(fiveRate) / float(len(fiveRate))
                 documents = {'documents' : docDic}
                 headers   = {'Ocp-Apim-Subscription-Key': subscription_key}

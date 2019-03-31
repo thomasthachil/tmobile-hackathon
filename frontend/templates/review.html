@@ -8,7 +8,7 @@
         <h2>{{ store }}</h2>
         <p>
             Check out what people are saying about this store and how you could
-                        improve the customer experience.
+            improve the customer experience.
         </p>
         <h4>Rating: {{ totalRating }}</h4>
         <h4>Sentiment Rating: {{ totalSentiment }}</h4>
@@ -20,24 +20,15 @@
         <h4>Reviews</h4>
         <h5>Positive</h5>
         {% for review in reviews["positive"] %}
-        <p>Date: {{ review[4] }}</p>
         <p>Rating: {{ review[0] }}</p>
         <p>Sentiment: {{ review[1] }}</p>
         <p>Positive: {{ review[2] }}</p>
-        <p>Full Review: {{ review[3] }}</p>
-        <br />
-        {% endfor %}
-        <br />
-        <h5>Negative</h5>
-        {% for review in reviews["negative"] %}
-        <p>Date: {{ review[4] }}</p>
-        <p>Rating: {{ review[0] }}</p>
-        <p>Sentiment: {{ review[1] }}</p>
         <p>Negative: {{ review[2] }}</p>
-        <p>Full Review: {{ review[3] }}</p>
+        <p>Full Review: {{ review[2] }}</p>
         <br />
         {% endfor %}
 
+        <h5>Negative</h5>
         <div class="result"></div>
     </div>
 </div>

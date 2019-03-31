@@ -1,26 +1,16 @@
 
-from flask import Flask, render_template, request, jsonify
+from flask import jsonify
+from bokeh.resources import CDN
+from bokeh.embed import json_item
+import json
+from flask import Flask, render_template, request
+
 from model import *
+from graphics import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisisasupersecretkey!'
 db = StoreDB()
-
-# TODO: Have each method be self contained, calling only the other methods it needs.
-
-
-# class HealthForm(FlaskForm):
-#     zipcode = IntegerField('Zip Code', validators=[
-#                            validators.input_required(), validators.Length(min=5, max=5)])
-#     radius = IntegerField('Radius', validators=[validators.input_required()])
-
-
-# class MeetingForm(FlaskForm):
-#     customerName = StringField('Customer Name', validators=[
-#                                validators.input_required()])
-#     time = TimeField('Appointment Time', validators=[
-#                      validators.input_required()])
-
 
 @app.route('/')
 def index():
@@ -35,7 +25,6 @@ def findReview():
 
         # find all stores that have this sizpcode
         results = db.zipcode_lookup(zipcode)
-        print results
         # result1 = {}
         # result2 = {}
         # result3 = {}
@@ -64,9 +53,9 @@ def findCustomer():
 
     return render_template('customer.html', results=True)
 
-
 @app.route('/review/<store>', methods=['GET'])
 def review(store):
+    store = store
     totalRating = 4.3
     totalSentiment = 0.556
     keyPhrases = {}
@@ -78,6 +67,7 @@ def review(store):
         neg += doc['keyPhrases']
     keyPhrases['positive'] = [str(r) for r in pos]
     keyPhrases['negative'] = [str(r) for r in neg]
+
     raw_revs = db.get_raw_reviews(store)
     reviews = {}
     positive = []
@@ -88,9 +78,15 @@ def review(store):
         positive.append([raw_revs[i][1], db.get_indexed_sent(store, i), db.get_indexed_pos_keyPhrases(store,i), raw_revs[i][0], raw_revs[i][2]])
         negative.append([raw_revs[i][1], db.get_indexed_sent(store, i), db.get_indexed_neg_keyPhrases(store,i), raw_revs[i][0], raw_revs[i][2]])
 
+    # positive.append([3.3, 0.25, ['blah', 'blah2', 'blah3']])
+    # positive.append([2.3, 0.23, ['blah', 'blah2', 'blah3']])
+    # positive.append([1.3, 0.15, ['blah', 'blah2', 'blah3']])
     reviews['positive'] = positive
     reviews['negative'] = negative
-    return render_template('review.html', store=store, totalRating=totalRating, totalSentiment=totalSentiment, keyPhrases=keyPhrases, reviews=reviews)
+
+    return render_template('reviewGraph.html', store=store, totalRating=totalRating,
+                           totalSentiment=totalSentiment, keyPhrases=keyPhrases,
+                           reviews=reviews)
 
 
 @app.route('/_storeRating')
@@ -111,3 +107,30 @@ def storeRating():
         ratings.append(rev[1])
         # idnum += 1
     return jsonify(rating=(sum(ratings) / float(len(ratings))))
+
+
+@app.route('/getStoreReviewHistory', methods = ['GET'])
+def history():
+    store = request.args.get('store', 't-mobile-atlanta-13', type=str)
+    plotter = ChefJeff(db, store)
+
+    return json.dumps(json_item(plotter.getReviewsOverTime(), "overtime"))
+
+@app.route('/getDevices', methods = ['GET'])
+def devices():
+    store = request.args.get('store', 't-mobile-atlanta-13', type=str)
+    plotter = ChefJeff(db, store)
+
+    return json.dumps(json_item(plotter.getPhoneChart(), "devices"))
+
+@app.route('/getServiceRatings', methods = ['GET'])
+def ratings():
+    store = request.args.get('store', 't-mobile-atlanta-13', type=str)
+    plotter = ChefJeff(db, store)
+
+    return json.dumps(json_item(plotter.getServiceSentimentChart(), "service"))
+
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port = 5000, debug = True)
+

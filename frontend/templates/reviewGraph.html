@@ -1,0 +1,163 @@
+{% extends "base.html" %} {% block content %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.css" type="text/css" />
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.js"></script>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <div class="row">
+        <div class="col-sm-12"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ store }}</h2>
+            <p>
+                Check out what people are saying about this store and how you could
+                improve the customer experience.
+            </p>
+            <b>Rating: <span id=stars></span></b>
+            <script>
+                document.getElementById("stars").innerHTML = getStars({{ totalRating }});
+
+                function getStars(rating) {
+
+                    // Round to nearest half
+                    rating = Math.round(rating * 2) / 2;
+                    let output = [];
+
+                    // Append all the filled whole stars
+                    for (var i = rating; i >= 1; i--)
+                        output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+                    // If there is a half a star, append it
+                    if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+                    // Fill the empty stars
+                    for (let i = (5 - rating); i >= 1; i--)
+                        output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
+                    return output.join('');
+
+                }
+            </script>
+
+            <b>Sentiment Rating: <span id=stars1></span></b>
+            <script>
+                document.getElementById("stars1").innerHTML = getStars({{ totalSentiment }});
+            </script>
+
+            <h4>Key Phrases:</h4>
+            <h5>Positive</h5>
+            <p>{{ keyPhrases["positive"] }}</p>
+            <h5>Negative</h5>
+            <p>{{ keyPhrases["negative"] }}</p>
+            <h4></h4>
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Ratings over Time</a></li>
+                <li><a data-toggle="tab" href="#menu1">Common Devices</a></li>
+                <li><a data-toggle="tab" href="#menu2">Customer Service Ratings</a></li>
+                <li><a data-toggle="tab" href="#menu3">Reviews</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="home" style="text-align:center"  class="tab-pane fade in active">
+                    <div class="content" id = "overtime">
+
+                    </div>
+
+                    <script>
+                        let params = {
+                            "store": "{{ store }}",
+                        }
+
+                        let query = Object.keys(params)
+                            .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+                            .join('&');
+
+                        var url = '/getStoreReviewHistory?' + query
+
+                        console.log('fetching')
+                        fetch(url)
+                            .then(function(response) { return response.json(); })
+                            .then(function(item) {Bokeh.embed.embed_item(item, "overtime"); })
+                    </script>
+                </div>
+
+                <div id="menu1" style="text-align:center" class="tab-pane fade">
+                    <div class="content" id = "otherstat" style = "text-align: center;">
+                        <div id="home"  class="tab-pane fade in active">
+                            <div class="content" id = "devices" style="display: inline-block">
+
+                            </div>
+
+                            <script>
+
+                                var urlnew = '/getDevices?' + query
+
+                                console.log('here')
+                                fetch(urlnew)
+                                    .then(function(response) { return response.json(); })
+                                    .then(function(item) { Bokeh.embed.embed_item(item, "devices"); })
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="menu2" style="text-align:center" class="tab-pane fade">
+                    <div class="content" id = "otherstat" style = "text-align: center;">
+                        <div id="home"  class="tab-pane fade in active">
+                            <div class="content" id = "service" style="display: inline-block">
+
+                            </div>
+
+                            <script>
+                                var urlnew = '/getServiceRatings?' + query
+
+                                console.log('here')
+                                fetch(urlnew)
+                                    .then(function(response) { return response.json(); })
+                                    .then(function(item) { Bokeh.embed.embed_item(item, "service"); })
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="menu3" class="tab-pane fade">
+                    <div class="content" id = "otherstat" >
+                        <h1>Reviews</h1>
+                        <h2>Positive</h2>
+                        {% for review in reviews["positive"] %}
+                            <p>Date: {{review[4]}}</p>
+                            <p>Rating: {{ review[0] }}</p>
+                            <p>Sentiment: {{ review[1] }}</p>
+                            <p>Positive: {{ review[2] }}</p>
+                            <p>Full Review: {{ review[3] }}</p>
+                            <br />
+                        {% endfor %}
+                        <br>
+                        <h2>Negative</h2>
+                        {% for review in reviews["negative"] %}
+                            <p>Date: {{review[4]}}</p>
+                            <p>Rating: {{ review[0] }}</p>
+                            <p>Sentiment: {{ review[1] }}</p>
+                            <p>Negative: {{ review[2] }}</p>
+                            <p>Full Review: {{ review[3] }}</p>
+                            <br />
+                        {% endfor %}
+                        SAT 7:39 PM
+
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+{% endblock %}

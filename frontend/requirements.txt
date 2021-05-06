@@ -18,7 +18,7 @@ entrypoints==0.3
 enum==0.4.7
 enum34==1.1.6
 Flask==1.0.2
-Flask-Cors==3.0.7
+Flask-Cors==3.0.9
 Flask-RESTful==0.3.7
 Flask-WTF==0.14.2
 functools32==3.2.3.post2
